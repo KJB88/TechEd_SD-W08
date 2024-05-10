@@ -1,10 +1,10 @@
 <div align="center">
-  <h1>:mortar_board: Tech Educators' SWD Bootcamp :mortar_board:<br/>:mortar_board: Week TODO Assessment :mortar_board:</h1>
+  <h1>:mortar_board: Tech Educators' SWD Bootcamp :mortar_board:<br/>:mortar_board: Week 08. Assessment :mortar_board:</h1>
     <p>
     🌴<a href="https://linktr.ee/kjb88">Linktree</a>🌴
     </p>
   <p>
-    Repository for coursework for TechEd Software Development Bootcamp - Week TODO.
+    Repository for coursework for TechEd Software Development Bootcamp - Week 08.
   </p>
 </div>
 <section>
