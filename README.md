@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>:mortar_board: Tech Educators' SWD Bootcamp :mortar_board:<br/>:mortar_board: Week 08. Assessment :mortar_board:</h1>
+  <h1>:mortar_board: Tech Educators' SWD Bootcamp :mortar_board:<br/>:mortar_board: Week 08 Assessment :mortar_board:</h1>
     <p>
     🌴<a href="https://linktr.ee/kjb88">Linktree</a>🌴
     </p>
