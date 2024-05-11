@@ -102,6 +102,11 @@ export const insertTag = {
   text: "INSERT INTO tags (name) VALUES ($1)",
 };
 
+export const insertComment = {
+  name: "insertComment",
+  text: "INSERT INTO comments (content, user_id, post_id VALUES ($1, $2, $3)"
+}
+
 // #endregion Inserts
 /*******************/
 // #region Updates
@@ -119,7 +124,6 @@ export const dropAllTables = `DROP TABLE IF EXISTS posts, users, tags, locations
 
 // Truncate All Records
 export const deleteAllRecordsInTable = `TRUNCATE $1`;
-
 
 // Truncate All Records in All Tables
 export const deleteAllRecordsInAllTables = `TRUNCATE users, posts, factions, tags, locations RESTART IDENTITY CASCADE`;
@@ -168,5 +172,16 @@ CREATE TABLE posts (
     likes INTEGER DEFAULT '0'
 )
 `;
+
+// Create Comments Table
+export const createCommentsTable = `
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  content TEXT,
+  user_id INTEGER REFERENCES users (id),
+  tabs_id INTEGER REFERENCES posts (id),
+  date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  likes INTEGER DEFAULT '0'
+)`
 // #endregion Seed-Specific
 /*******************/

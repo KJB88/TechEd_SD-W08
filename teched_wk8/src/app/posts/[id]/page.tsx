@@ -1,4 +1,4 @@
-async function generateMetadata({params}: {params: {id: number}})
+export async function generateMetadata({params}: {params: {id: number}})
 {
     const result = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
 

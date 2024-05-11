@@ -1,17 +1,9 @@
 import Link from 'next/link'
 
-async function generateMetadata({params}: {params: {id: number}})
-{
-    const result = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
-
-    const post = await result.json();
-
-    return {
+export const metadata = {
         title: 'All of the posts. All. Of. Them.',
         description: `Why can't I hold all of these posts!?`,
     };
-}
-
 
 export default async function Posts ({
   searchParams

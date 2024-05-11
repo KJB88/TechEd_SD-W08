@@ -1,12 +1,14 @@
 /* Database Seed */
 /*******************/
 // #region Imports
-// Inserts
 import { Pool } from "pg";
-import {createFactionsTable, createLocationsTable, createPostsTable, createTagsTable, createUsersTable, insertFaction, insertLocation, insertPost, insertTag, insertUser } from "./queries.js";
 
-// Deletes
-import { dropAllTables } from "./queries.js";
+// Create Tables
+import {createFactionsTable, createLocationsTable, createPostsTable, createTagsTable, createUsersTable} from "./queries";
+// Drop Tables
+import { dropAllTables } from "./queries";
+// Inserts
+import { insertFaction, insertLocation, insertPost, insertTag, insertUser, insertComment} from "./queries";
 
 // #endregion Imports
 /*******************/
@@ -29,6 +31,7 @@ export default async function seedFullDB(db: Pool)
     // Dependent tables (Order matters)
     await populateUsers(db);
     await populatePosts(db);
+    await populateComments(db);
 }
 
 /* Individual Seed Functions 
@@ -129,28 +132,28 @@ await db.query(insertPost, [
 ]);
 }
 
-/*
+
 // Comments
 // (content, user_id, post_id)
-function populateComments(db)
+async function populateComments(db : Pool)
 {
     // cID 1 by uID 1 on pID 3
-    db.query(insertComment, ["Pryvit bratan! Buckshot much better for trip outside village!", 1, 3]);
+    await db.query(insertComment, ["Pryvit bratan! Buckshot much better for trip outside village!", 1, 3]);
 
     // cID 2 by uID 3 on pID 2
-    db.query(insertComment, ["Every day that ends where we're still breathing is a good day!", 3, 2]);
+    await db.query(insertComment, ["Every day that ends where we're still breathing is a good day!", 3, 2]);
 
     // cID 3 by uID 2 on pID 1
-    db.query(insertComment, [
+    await db.query(insertComment, [
         "How do these guys still have network access? Is Sidorovich sleeping on the job again?", 2, 1]);
     
     // cID 4 by uID 6 on pID 1
-    db.query(insertComment, ["If you don't like it, don't use it! Blyat!", 6, 1]);
+    await db.query(insertComment, ["If you don't like it, don't use it! Blyat!", 6, 1]);
 
     // cID 5 by uID 1 on pID 4
-    db.query(insertComment, ["Vodka, moy tovarisch! No tingle if no brain! Budmo!", 1, 4]);
+    await db.query(insertComment, ["Vodka, moy tovarisch! No tingle if no brain! Budmo!", 1, 4]);
 }
-*/
+
 
 async function DEBUG_nukeDB(db: Pool)
 {
