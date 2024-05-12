@@ -36,7 +36,7 @@ export default async function SinglePostPage ({
 
     await addNewComment(content, 1, params.id)
 
-    revalidatePath('/posts')
+    revalidatePath(`/posts/${params.id}`)
   }
 
   return (
