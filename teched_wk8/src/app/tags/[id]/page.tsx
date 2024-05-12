@@ -9,7 +9,6 @@ export default async function TagFilter ({
   params: { id: number }
 }) {
   const posts = await getPostsByTagID(params.id)
-  console.log(posts)
   return (
     <>
       <Heading data={{ name: posts[0].name }} />

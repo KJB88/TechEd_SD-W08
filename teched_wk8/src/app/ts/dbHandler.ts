@@ -4,7 +4,9 @@
 import dotenv from "dotenv";
 import pg from "pg";
 import seedFullDB from "./seed";
-import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllCommentsByPostID, selectPostByPostID, updateCommentLikesByCommentID, updatePostLikesByPostID, deleteCommentByCommentID, deletePostByPostID, selectPostsByTagID, selectPostsByTagIDWithTagJoin} from "./queries";
+import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions,
+     selectAllLocations, selectAllCommentsByPostID, selectPostByPostID, updateCommentLikesByCommentID,
+      updatePostLikesByPostID, deleteCommentByCommentID, deletePostByPostID, selectPostsByTagIDWithTagJoin} from "./queries";
 import {insertPost, insertComment} from "./queries";
 // Use envVars
 dotenv.config();
@@ -97,7 +99,6 @@ export async function putCommentLikes(comment_id : number)
 export async function putPostLikes(post_id : number)
 {
     const result = await db.query(updatePostLikesByPostID, [post_id]);
-    console.log(result);
 }
 // #endregion PUT-UPDATE routing
 /*******************/
@@ -106,7 +107,6 @@ export async function putPostLikes(post_id : number)
 export async function deleteComment(comment_id : number)
 {
     const result = await db.query(deleteCommentByCommentID, [comment_id]);
-    console.log(result);
 }
 
 export async function deletePost(post_id : number)

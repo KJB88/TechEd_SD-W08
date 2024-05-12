@@ -7,27 +7,27 @@ export default function ContentModifier ({
   data: { id: number; isPost: boolean }
 }) {
   async function deleteContent () {
-    'use server'
-    console.log(data);
+    "use server"
+    console.log(data.id);
     if (data.isPost)
         {
-            deletePost(data.id);
+            await deletePost(data.id);
         }
         else{
-            deleteComment(data.id);
+          await deleteComment(data.id);
         }
 
   }
 
   async function likeContent () {
-    'use server'
+    "use server"
     console.log(data);
     if (data.isPost)
         {
-            putPostLikes(data.id);
+          await putPostLikes(data.id);
         }
         else{
-            putCommentLikes(data.id);
+          await putCommentLikes(data.id);
         }
   }
 
