@@ -1,23 +1,24 @@
+/* ROUTE: POST ID */
+import { getPostByID } from "@/app/ts/dbHandler";
 export async function generateMetadata({params}: {params: {id: number}})
 {
-    const result = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
-
-    const post = await result.json();
+    const result = await getPostByID(params.id);
+    const post = result[0];
 
     return {
-        title: `Post: ${post.title}`,
-        description: `${post.description}`,
+        title: `ZonePDA Post: ${post.title}`,
+        description: `Viewing post of ${post.title}`,
     };
 }
 
 export default async function SinglePostPage ({ params }: { params: {id: number}}) {
-  const resp = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
-  const post = await resp.json();
+  const result = await getPostByID(params.id);
+  const post = result[0];
 
   return (
     <div>
-      <h1>Single Post Page</h1>
-      <p>{post.title}</p>
+      <h1>{post.id} : {post.header}</h1>
+      <p>{post.content}</p>
     </div>
   )
 }

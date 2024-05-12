@@ -68,6 +68,11 @@ export const selectTagByTagID = {
   text: "SELECT * FROM tags WHERE tags.id = $1",
 };
 
+export const selectAllComments ={
+  name: "selectAllComments",
+  text: "SELECT * FROM comments"
+};
+
 // #endregion Selects
 /*******************/
 // #region Inserts
@@ -104,7 +109,7 @@ export const insertTag = {
 
 export const insertComment = {
   name: "insertComment",
-  text: "INSERT INTO comments (content, user_id, post_id VALUES ($1, $2, $3)"
+  text: "INSERT INTO comments (content, user_id, post_id) VALUES ($1, $2, $3)"
 }
 
 // #endregion Inserts
@@ -120,13 +125,13 @@ export const insertComment = {
 // #region Seed-Specific
 
 // Drop All Tables
-export const dropAllTables = `DROP TABLE IF EXISTS posts, users, tags, locations, factions`;
+export const dropAllTables = `DROP TABLE IF EXISTS posts, users, tags, locations, factions, comments CASCADE`;
 
 // Truncate All Records
-export const deleteAllRecordsInTable = `TRUNCATE $1`;
+export const deleteAllRecordsInTable = `TRUNCATE IF EXISTS $1 CASCADE`;
 
 // Truncate All Records in All Tables
-export const deleteAllRecordsInAllTables = `TRUNCATE users, posts, factions, tags, locations RESTART IDENTITY CASCADE`;
+export const deleteAllRecordsInAllTables = `TRUNCATE IF EXISTS users, posts, factions, tags, locations, comments RESTART IDENTITY CASCADE`;
 
 // Create Locations Table
 export const createLocationsTable = `
@@ -179,7 +184,7 @@ CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   content TEXT,
   user_id INTEGER REFERENCES users (id),
-  tabs_id INTEGER REFERENCES posts (id),
+  post_id INTEGER REFERENCES posts (id),
   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   likes INTEGER DEFAULT '0'
 )`

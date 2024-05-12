@@ -3,8 +3,9 @@
 // #region Config
 import dotenv from "dotenv";
 import pg from "pg";
-import seedDB from "./seed";
-import { selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, insertPost} from "./queries";
+import seedFullDB from "./seed";
+import { selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllComments, selectPostByPostID} from "./queries";
+import {insertPost} from "./queries";
 
 // Use envVars
 dotenv.config();
@@ -17,8 +18,10 @@ const db = new pg.Pool({connectionString: dbConnStr});
 /*******************/
 // #region Core
 
-export function dbInit(){
-    seedDB(db);
+export async function dbInit(){
+    console.log("DBHANDLER: Initializing DB...");
+    await seedFullDB(db);
+    console.log("DBHANDLER: DB initialized.");
 }
 
 // #endregion Core
@@ -34,6 +37,10 @@ export async function getAllPosts()
     return (await db.query(selectAllPosts)).rows;
 }
 
+export async function getPostByID(id : number)
+{
+    return (await db.query(selectPostByPostID, [id])).rows;
+}
 export async function getAllTags()
 {
     return (await db.query(selectAllTags)).rows;
@@ -49,6 +56,10 @@ export async function getAllLocations()
     return (await db.query(selectAllLocations)).rows;
 }
 
+export async function getAllComments()
+{
+    return (await db.query(selectAllComments)).rows;
+}
 // #endregion GET-SELECT routing
 /*******************/
 // #region POST-INSERT routing

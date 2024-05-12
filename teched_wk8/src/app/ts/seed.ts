@@ -4,7 +4,7 @@
 import { Pool } from "pg";
 
 // Create Tables
-import {createFactionsTable, createLocationsTable, createPostsTable, createTagsTable, createUsersTable} from "./queries";
+import {createCommentsTable, createFactionsTable, createLocationsTable, createPostsTable, createTagsTable, createUsersTable} from "./queries";
 // Drop Tables
 import { dropAllTables } from "./queries";
 // Inserts
@@ -17,6 +17,8 @@ import { insertFaction, insertLocation, insertPost, insertTag, insertUser, inser
 // Populate the DB with seed data
 export default async function seedFullDB(db: Pool)
 {
+    console.log("SEED: Seeding DB...");
+
     // DEBUG - Nukes DB
     await DEBUG_nukeDB(db);
 
@@ -32,6 +34,8 @@ export default async function seedFullDB(db: Pool)
     await populateUsers(db);
     await populatePosts(db);
     await populateComments(db);
+
+    console.log("SEED: DB seed complete.")
 }
 
 /* Individual Seed Functions 
@@ -40,27 +44,34 @@ NOTE: They are all await to lock IDs for testing. */
 // Create Tables
 async function createTables(db: Pool)
 {
+    console.log("SEED: Creating tables...")
     await db.query(createFactionsTable);
     await db.query(createLocationsTable);
     await db.query(createTagsTable);
     await db.query(createUsersTable);
     await db.query(createPostsTable);
+    await db.query(createCommentsTable);
+
+    console.log("SEED: All tables created.")
 }
 // Factions
 // (name)
 async function populateFactions(db: Pool)
 {
+    console.log("SEED: Seeding factions...")
     await db.query(insertFaction, ["Loner"]); // 1
     await db.query(insertFaction, ["Duty"]); // 2
     await db.query(insertFaction, ["Freedom"]); // 3
     await db.query(insertFaction, ["Clear Sky"]); // 4
     await db.query(insertFaction, ["Monolith"]); // 5
+    console.log("SEED: Factions seeded.")
 }
 
 // Locations
 // (name)
 async function populateLocations(db: Pool)
 {
+    console.log("SEED: Seeding locations...")
     await db.query(insertLocation, ["100 Rads Bar"]); // 1
     await db.query(insertLocation, ["Skadovsk"]); // 2
     await db.query(insertLocation, ["Rookie Village"]); // 3
@@ -68,13 +79,14 @@ async function populateLocations(db: Pool)
     await db.query(insertLocation, ["Swamps"]); // 5
     await db.query(insertLocation, ["CNPP"]); // 6
     await db.query(insertLocation, ["Pripyat"]); // 7
-
+    console.log("SEED: Locations seeded.")
 }
 
 // Users
 // (name, rank, factionID, locationID)
 async function populateUsers(db: Pool)
 {
+    console.log("SEED: Seeding users...")
     await db.query(insertUser, ["Vanderlust", "Veteran", 2, 1]); // 1
     await db.query(insertUser, ["Cera", "Master", 1, 2]); // 2
     await db.query(insertUser, ["Artyom", "Rookie", 3, 3]); // 3
@@ -82,23 +94,26 @@ async function populateUsers(db: Pool)
     await db.query(insertUser, ["Charon", "Master", 5, 7]); // 5
     await db.query(insertUser, ["Sidorovich", "Trader", 1, 3]); // 6
     await db.query(insertUser, ["Wollivan", "Novice", 1, 5]); // 7
-
+    console.log("SEED: Users seeded.")
 }
 
 // Tags
 // (name)
 async function populateTags(db: Pool)
 {
+    console.log("SEED: Seeding tags...")
     await db.query(insertTag, ["Recruitment"]); // 1
     await db.query(insertTag, ["Personal"]); // 2
     await db.query(insertTag, ["Advice"]); // 3
     await db.query(insertTag, ["Buying"]); // 4
+    console.log("SEED: Tags seeded.")
 }
 
 // Posts
 // (header, content, tag, user_id)
 async function populatePosts(db: Pool)
 {
+    console.log("SEED: Seeding posts...")
     // 1
 await db.query(insertPost, [
 "Praise the Monolith!", 
@@ -130,6 +145,7 @@ await db.query(insertPost, [
 3,
 7
 ]);
+console.log("SEED: Posts seeded.")
 }
 
 
@@ -137,6 +153,7 @@ await db.query(insertPost, [
 // (content, user_id, post_id)
 async function populateComments(db : Pool)
 {
+    console.log("SEED: Seeding comments...")
     // cID 1 by uID 1 on pID 3
     await db.query(insertComment, ["Pryvit bratan! Buckshot much better for trip outside village!", 1, 3]);
 
@@ -152,12 +169,15 @@ async function populateComments(db : Pool)
 
     // cID 5 by uID 1 on pID 4
     await db.query(insertComment, ["Vodka, moy tovarisch! No tingle if no brain! Budmo!", 1, 4]);
+    console.log("SEED: Comments seeded.")
 }
 
 
 async function DEBUG_nukeDB(db: Pool)
 {
+    console.log("SEED: Nuking DB...")
     await db.query(dropAllTables);
+    console.log("SEED: DB nuked.")
 }
 // #endregion Seeding
 /*******************/

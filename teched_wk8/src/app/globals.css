@@ -5,11 +5,34 @@
 :root {
   --text-color: white;
   --drop-shadow-color: black;
-  --drop-shadow-displacement: -2px -2px;
+  --drop-shadow-displacement: 2px 2px;
+  overflow-x: hidden;
+  overflow-y: hidden
 }
 
 body {
+  color:var(--text-color);
+
+  .drop-shadow{
+    filter: drop-shadow(var(--drop-shadow-color) var(--drop-shadow-displacement));
+  }
+
+  .pda{
+    margin-left: 50%;
+    margin-right: 50%;
+    padding-top: 66px;
+    transform: translateX(-50%);
+  }
+  .pda-margin
+{
+  margin-left: 50%;
+  margin-right: 50%;
+  transform: translateX(-49%);
+  width: 365px;
+  height: 525px
 }
+}
+
 
 @layer utilities {
   .text-balance {
