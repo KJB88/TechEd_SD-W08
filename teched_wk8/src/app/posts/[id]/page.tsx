@@ -26,12 +26,12 @@ export default async function SinglePostPage ({ params }: { params: {id: number}
       by <span className="font-bold">{post.name}</span> at <span className="font-bold">{post.date_created.toString()}</span>
     </div>
     <div>
-      <form>
-        
+      <form className="border-b-2 border-b-white">
+
       </form>
       <ul>
         {comments.map((comment) => (
-          <li key={comment.id}>
+          <li key={comment.id} className="border-b-2 border-b-white">
           <p>{comment.content}</p> by <span className="font-bold">{comment.name}</span> at <span className="font-bold">{comment.date_created.toString()}</span>
            </li>
         ))}

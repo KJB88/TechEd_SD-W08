@@ -21,13 +21,15 @@ body {
     border-bottom: white 2px solid;
     font-weight: bold;
     text-align: center;
-    font-size:  1.5rem;
+    font-size: 1.5rem;
     line-height: 2rem;
   }
   .pda{
     margin-left: 50%;
     margin-right: 50%;
     padding-top: 66px;
+    height: 800px;
+    width: 470px;
     transform: translateX(-50%);
   }
   .pda-margin
