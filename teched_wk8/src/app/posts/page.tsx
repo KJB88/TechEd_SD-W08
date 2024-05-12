@@ -6,7 +6,6 @@ import {
 } from '@/app/ts/dbHandler'
 import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
-import { useRef} from "react"
 
 export const metadata = {
   title: 'ZonePDA: All Posts',
@@ -18,7 +17,6 @@ export default async function Posts ({
 }: {
   searchParams: { sort: string }
 }) {
-  const ref = useRef(null);
   const allPosts = await getAllPostsWithUserJoin()
 
   const postHTML = allPosts.map(post => (

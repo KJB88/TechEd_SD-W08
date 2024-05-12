@@ -1,5 +1,6 @@
 /* ROUTE: POST ID */
-import { getPostByID, getAllCommentsByPostID } from "@/app/ts/dbHandler";
+import { getPostByID, getAllCommentsByPostID, addNewComment } from "@/app/ts/dbHandler";
+import { revalidatePath } from 'next/cache'
 export async function generateMetadata({params}: {params: {id: number}})
 {
     const result = await getPostByID(params.id);
@@ -18,6 +19,16 @@ export default async function SinglePostPage ({ params }: { params: {id: number}
   const cmtResult = await getAllCommentsByPostID(post.id);
   const comments = cmtResult;
 
+  async function submitComment(formData : FormData) {
+    "use server";
+
+    const content = formData.get("content") as string;
+     
+    await addNewComment(content, 1, params.id);
+
+    revalidatePath("/posts");
+  }
+
   return (
     <>
     <div className="border-b-2 border-b-white">
@@ -26,8 +37,10 @@ export default async function SinglePostPage ({ params }: { params: {id: number}
       by <span className="font-bold">{post.name}</span> at <span className="font-bold">{post.date_created.toString()}</span>
     </div>
     <div>
-      <form className="border-b-2 border-b-white">
-
+      <form className='flex flex-col border-b-white border-b-2 pb-2' action={submitComment}>
+        <label htmlFor='content'>Comment:</label>
+        <input className="text-black" type='text' name='content' />
+        <button className="bg-gray-300 text-black mt-2">Submit Comment</button>
       </form>
       <ul>
         {comments.map((comment) => (

@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import pg from "pg";
 import seedFullDB from "./seed";
 import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllCommentsByPostID, selectPostByPostID} from "./queries";
-import {insertPost} from "./queries";
+import {insertPost, insertComment} from "./queries";
 
 // Use envVars
 dotenv.config();
@@ -74,6 +74,11 @@ export async function addNewPost(header: string, content: string, tag_id: number
     const result = await db.query(insertPost, [header, content, tag_id, user_id]);
 
     console.log(result);
+}
+
+export async function addNewComment(content: string, user_id: number, post_id: number)
+{
+    const result = await db.query(insertComment, [content, user_id, post_id]);
 }
 // #endregion POST-INSERT routing
 /*******************/
