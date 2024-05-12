@@ -15,7 +15,7 @@ const config: Config = {
           'skadovsk': "url('img/skadovsk.webp')",
           '100rads': "url('img/100rads.webp')",
           'nuke': "url('img/nuke.png')",
-          'pda': "url('img/pda.png')"
+          'pda': "url('img/pda.png')",
       },
     },
   },

@@ -4,9 +4,8 @@
 import dotenv from "dotenv";
 import pg from "pg";
 import seedFullDB from "./seed";
-import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllCommentsByPostID, selectPostByPostID} from "./queries";
+import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllCommentsByPostID, selectPostByPostID, updateCommentLikesByCommentID, updatePostLikesByPostID, deleteCommentByCommentID, deletePostByPostID, selectPostsByTagID, selectPostsByTagIDWithTagJoin} from "./queries";
 import {insertPost, insertComment} from "./queries";
-
 // Use envVars
 dotenv.config();
 
@@ -39,12 +38,18 @@ export async function getAllPosts()
 
 export async function getAllPostsWithUserJoin()
 {
-    return (await db.query((selectAllPostsWithUserJoin))).rows;
+    return (await db.query(selectAllPostsWithUserJoin)).rows;
 }
 export async function getPostByID(id : number)
 {
     return (await db.query(selectPostByPostID, [id])).rows;
 }
+
+export async function getPostsByTagID(id: number)
+{
+    return (await db.query(selectPostsByTagIDWithTagJoin, [id])).rows;
+}
+
 export async function getAllTags()
 {
     return (await db.query(selectAllTags)).rows;
@@ -81,4 +86,33 @@ export async function addNewComment(content: string, user_id: number, post_id: n
     const result = await db.query(insertComment, [content, user_id, post_id]);
 }
 // #endregion POST-INSERT routing
+/*******************/
+// #region PUT-UPDATE routing
+
+export async function putCommentLikes(comment_id : number)
+{
+    const result = await db.query(updateCommentLikesByCommentID, [comment_id]);
+    console.log(result);
+}
+export async function putPostLikes(post_id : number)
+{
+    const result = await db.query(updatePostLikesByPostID, [post_id]);
+    console.log(result);
+}
+// #endregion PUT-UPDATE routing
+/*******************/
+// #region DEL-DEL routing
+
+export async function deleteComment(comment_id : number)
+{
+    const result = await db.query(deleteCommentByCommentID, [comment_id]);
+    console.log(result);
+}
+
+export async function deletePost(post_id : number)
+{
+    const result = await db.query(deletePostByPostID, [post_id]);
+    console.log(result);
+}
+// #endregion DEL-DEL routing
 /*******************/

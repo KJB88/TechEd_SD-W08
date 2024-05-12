@@ -49,6 +49,11 @@ export const selectPostsByUserID = {
   text: "SELECT * FROM posts WHERE posts.user_id = $1",
 };
 
+// Post(s) - By Tag ID
+export const selectPostsByTagIDWithTagJoin = {
+  name: "selectPostsByTagID",
+  text: "SELECT posts.*, tags.name FROM posts INNER JOIN tags ON posts.tag_id = tags.id WHERE posts.tag_id = $1"
+}
 // Location(s) - All
 export const selectAllLocations = {
   name: "selectAllLocations",
@@ -120,11 +125,28 @@ export const insertComment = {
 // #endregion Inserts
 /*******************/
 // #region Updates
+export const updateCommentLikesByCommentID = {
+  name: "updateCommentLikesByCommentID",
+  text: "UPDATE comments SET likes = likes + 1 WHERE comments.id = $1"
+}
 
+export const updatePostLikesByPostID = {
+  name: "updatePostLikesByPostID",
+  text: "UPDATE posts SET likes = likes + 1 WHERE posts.id = $1"
+}
 // #endregion Updates
 /*******************/
 // #region Deletes
 
+export const deleteCommentByCommentID = {
+  name: "deleteCommentByCommentID",
+  text: "DELETE FROM comments WHERE comments.id = $1"
+}
+
+export const deletePostByPostID = {
+  name: "deletePostByPostID",
+  text: "DELETE FROM posts WHERE posts.id = $1 CASCADE"
+}
 //#endregion Deletes
 /*******************/
 // #region Seed-Specific

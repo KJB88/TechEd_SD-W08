@@ -9,7 +9,7 @@ export default function Header () {
       </a>
       <h2 className="drop-shadow text-lg mb-2">&quot;Good hunting, Stalker!&quot;</h2>
       <nav>
-      <a className="drop-shadow text-blue-300 hover:text-blue-600"  href="https://linktr.ee/kjb88">Linktree</a>
+      <a className="drop-shadow text-blue-300 hover:text-blue-600"  target="_blank" href="https://linktr.ee/kjb88">Linktree</a>
       </nav>
     </header>
     </div>
