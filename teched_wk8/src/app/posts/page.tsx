@@ -1,11 +1,7 @@
 /* POSTS */
 import {
   getAllPostsWithUserJoin,
-  getAllFactions,
-  getAllLocations,
-  getAllPosts,
-  getAllTags,
-  getAllUsers
+  addNewPost
 } from '@/app/ts/dbHandler'
 import Link from 'next/link'
 export const metadata = {
@@ -31,11 +27,21 @@ export default async function Posts ({
     </li>
   ))
 
+  async function submitPost(formData : FormData)
+  {
+    "use server";
+
+    const header = formData.get("header") as string;
+    const content = formData.get("content") as string;
+     
+    const result = await addNewPost(header, content, 1, 1);
+  }
+
   return (
     <div>
       <h1 className='drop-shadow heading'>Posts</h1>
-      <form className='flex flex-col border-b-white border-b-2 pb-2'>
-        <label htmlFor='header'>Title:</label>
+      <form className='flex flex-col border-b-white border-b-2 pb-2' action={submitPost}>
+        <label htmlFor='title'>Title:</label>
         <input type='text' name='header' />
         <label htmlFor='content'>Message:</label>
         <input type='text' name='content' />
