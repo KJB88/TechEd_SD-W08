@@ -17,6 +17,13 @@ body {
     filter: drop-shadow(var(--drop-shadow-color) var(--drop-shadow-displacement));
   }
 
+  .heading{
+    border-bottom: white 2px solid;
+    font-weight: bold;
+    text-align: center;
+    font-size:  1.5rem;
+    line-height: 2rem;
+  }
   .pda{
     margin-left: 50%;
     margin-right: 50%;

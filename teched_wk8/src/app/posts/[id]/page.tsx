@@ -1,5 +1,5 @@
 /* ROUTE: POST ID */
-import { getPostByID } from "@/app/ts/dbHandler";
+import { getPostByID, getAllCommentsByPostID } from "@/app/ts/dbHandler";
 export async function generateMetadata({params}: {params: {id: number}})
 {
     const result = await getPostByID(params.id);
@@ -15,10 +15,28 @@ export default async function SinglePostPage ({ params }: { params: {id: number}
   const result = await getPostByID(params.id);
   const post = result[0];
 
+  const cmtResult = await getAllCommentsByPostID(post.id);
+  const comments = cmtResult;
+
   return (
-    <div>
-      <h1>{post.id} : {post.header}</h1>
+    <>
+    <div className="border-b-2 border-b-white">
+      <h1 className="heading">{post.header}</h1>
       <p>{post.content}</p>
+      by <span className="font-bold">{post.name}</span> at <span className="font-bold">{post.date_created.toString()}</span>
     </div>
+    <div>
+      <form>
+        
+      </form>
+      <ul>
+        {comments.map((comment) => (
+          <li key={comment.id}>
+          <p>{comment.content}</p> by <span className="font-bold">{comment.name}</span> at <span className="font-bold">{comment.date_created.toString()}</span>
+           </li>
+        ))}
+      </ul>
+    </div>
+    </>
   )
 }

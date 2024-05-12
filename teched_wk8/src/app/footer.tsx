@@ -1,6 +1,6 @@
 export default function Footer () {
   return (
-    <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 flex flex-col justify-center w-50">
+    <footer className="fixed bottom-0 w-screen flex flex-col justify-center">
       <span className="drop-shadow text-center">This website is but a tribute to a great series, by a humble stalker in the Zone.</span>
       <span className="drop-shadow text-center">
         All artwork, imagery and themery are from the 

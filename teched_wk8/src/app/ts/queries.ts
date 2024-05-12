@@ -32,10 +32,15 @@ export const selectAllPosts = {
   text: "SELECT * FROM posts",
 };
 
+export const selectAllPostsWithUserJoin = {
+  name: "selectAllPostsWithUserJoin",
+  text: "SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id",
+};
+
 // Post - By Post ID
 export const selectPostByPostID = {
   name: "selectPostByPostID",
-  text: "SELECT * FROM posts WHERE posts.id = $1",
+  text: "SELECT posts.*, users.name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id = $1",
 };
 
 // Post(s) - By User ID
@@ -68,9 +73,9 @@ export const selectTagByTagID = {
   text: "SELECT * FROM tags WHERE tags.id = $1",
 };
 
-export const selectAllComments ={
-  name: "selectAllComments",
-  text: "SELECT * FROM comments"
+export const selectAllCommentsByPostID ={
+  name: "selectAllCommentsByPostID",
+  text: "SELECT comments.*, users.name FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comments.post_id = $1"
 };
 
 // #endregion Selects

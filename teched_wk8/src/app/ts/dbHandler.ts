@@ -4,7 +4,7 @@
 import dotenv from "dotenv";
 import pg from "pg";
 import seedFullDB from "./seed";
-import { selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllComments, selectPostByPostID} from "./queries";
+import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions, selectAllLocations, selectAllCommentsByPostID, selectPostByPostID} from "./queries";
 import {insertPost} from "./queries";
 
 // Use envVars
@@ -37,6 +37,10 @@ export async function getAllPosts()
     return (await db.query(selectAllPosts)).rows;
 }
 
+export async function getAllPostsWithUserJoin()
+{
+    return (await db.query((selectAllPostsWithUserJoin))).rows;
+}
 export async function getPostByID(id : number)
 {
     return (await db.query(selectPostByPostID, [id])).rows;
@@ -56,9 +60,9 @@ export async function getAllLocations()
     return (await db.query(selectAllLocations)).rows;
 }
 
-export async function getAllComments()
+export async function getAllCommentsByPostID(id : number)
 {
-    return (await db.query(selectAllComments)).rows;
+    return (await db.query(selectAllCommentsByPostID, [id])).rows;
 }
 // #endregion GET-SELECT routing
 /*******************/
