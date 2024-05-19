@@ -57,25 +57,25 @@ export const selectPostsByTagIDWithTagJoin = {
 // Location(s) - All
 export const selectAllLocations = {
   name: "selectAllLocations",
-  text: "SELECT * FROM locations",
+  text: "SELECT locations.* FROM locations",
 };
 
 // Faction(s) - All
 export const selectAllFactions = {
   name: "selectAllFactions",
-  text: "SELECT * FROM factions",
+  text: "SELECT factions.* FROM factions",
 };
 
 // Tag(s) - All
 export const selectAllTags = {
   name: "selectAllTags",
-  text: "SELECT * FROM tags",
+  text: "SELECT tags.* FROM tags",
 };
 
 // Tag - By Tag ID
 export const selectTagByTagID = {
   name: "selectTagByTagID",
-  text: "SELECT * FROM tags WHERE tags.id = $1",
+  text: "SELECT tags.* FROM tags WHERE tags.id = $1",
 };
 
 export const selectAllCommentsByPostID ={
@@ -127,12 +127,12 @@ export const insertComment = {
 // #region Updates
 export const updateCommentLikesByCommentID = {
   name: "updateCommentLikesByCommentID",
-  text: "UPDATE comments SET likes = likes + 1 WHERE comments.id = $1"
+  text: "UPDATE comments SET comments.likes = comments.likes + 1 WHERE comments.id = $1"
 }
 
 export const updatePostLikesByPostID = {
   name: "updatePostLikesByPostID",
-  text: "UPDATE posts SET likes = likes + 1 WHERE posts.id = $1"
+  text: "UPDATE posts SET posts.likes = posts.likes + 1 WHERE posts.id = $1"
 }
 // #endregion Updates
 /*******************/

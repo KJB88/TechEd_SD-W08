@@ -16,7 +16,7 @@ export default async function Posts ({
   searchParams: { sort: string }
 }) {
   const allPosts = await getAllPostsWithUserJoin()
-
+console.log(allPosts);
   async function submitPost (formData: FormData) {
     'use server'
 

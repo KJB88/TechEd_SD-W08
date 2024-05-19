@@ -28,6 +28,7 @@ export async function dbInit(){
 // #endregion Core
 /*******************/
 // #region GET-SELECT routing
+
 export async function getAllUsers()
 {
     return (await db.query(selectAllUsers)).rows;
@@ -42,6 +43,7 @@ export async function getAllPostsWithUserJoin()
 {
     return (await db.query(selectAllPostsWithUserJoin)).rows;
 }
+
 export async function getPostByID(id : number)
 {
     return (await db.query(selectPostByPostID, [id])).rows;
@@ -71,33 +73,34 @@ export async function getAllCommentsByPostID(id : number)
 {
     return (await db.query(selectAllCommentsByPostID, [id])).rows;
 }
+
 // #endregion GET-SELECT routing
 /*******************/
 // #region POST-INSERT routing
+
 export async function addNewPost(header: string, content: string, tag_id: number, user_id: number)
 { 
-    console.log(header);
-    console.log(content);
     const result = await db.query(insertPost, [header, content, tag_id, user_id]);
-
-    console.log(result);
 }
 
 export async function addNewComment(content: string, user_id: number, post_id: number)
 {
     const result = await db.query(insertComment, [content, user_id, post_id]);
 }
+
 // #endregion POST-INSERT routing
 /*******************/
 // #region PUT-UPDATE routing
 
 export async function putCommentLikes(comment_id : number)
 {
+    console.log(comment_id);
     const result = await db.query(updateCommentLikesByCommentID, [comment_id]);
     console.log(result);
 }
 export async function putPostLikes(post_id : number)
 {
+    console.log(post_id);
     const result = await db.query(updatePostLikesByPostID, [post_id]);
 }
 // #endregion PUT-UPDATE routing
@@ -106,11 +109,13 @@ export async function putPostLikes(post_id : number)
 
 export async function deleteComment(comment_id : number)
 {
+    console.log(comment_id);
     const result = await db.query(deleteCommentByCommentID, [comment_id]);
 }
 
 export async function deletePost(post_id : number)
 {
+    console.log(post_id);
     const result = await db.query(deletePostByPostID, [post_id]);
     console.log(result);
 }

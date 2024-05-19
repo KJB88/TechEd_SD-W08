@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Heading from './heading'
+
 /* HOME */
 export function generateMetadata () {
   return {
