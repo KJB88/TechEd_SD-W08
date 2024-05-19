@@ -1,5 +1,3 @@
-import React from 'react'
-import * as Popover from '@radix-ui/react-popover'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {
@@ -29,7 +27,6 @@ export default function RootLayout ({
 }>) {
   return (
     <ClerkProvider>
-      <Popover.Root>
       <html lang='en'>
         <body className={inter.className}>
           <div className='bg-skadovsk bg-cover bg-center h-screen'>
@@ -41,15 +38,6 @@ export default function RootLayout ({
                 <UserButton />
               </SignedIn>
               <Header />
-               {/*
-              <Popover.Trigger className="text-black">MORE INFO</Popover.Trigger>
-              <Popover.Portal>
-                <Popover.Content className="text-black">
-                  AAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
-                  <Popover.Arrow />
-                </Popover.Content>
-              </Popover.Portal>
-  */}
               <main className='fixed bg-pda bg-top bg-contain bg-no-repeat pt-16 pda'>
                 <div className='fixed mx-20 object-contain w- h-min flex flex-col gap-2 align-items pda-margin bg-black overflow-y-scroll'>
                   {children}
@@ -60,7 +48,6 @@ export default function RootLayout ({
           </div>
         </body>
       </html>
-     </Popover.Root>
     </ClerkProvider>
   )
 }
