@@ -7,6 +7,7 @@ import {
 import { revalidatePath } from 'next/cache'
 import Heading from '@/app/heading'
 import ContentModifier from '@/app/contentMod'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata ({ params }: { params: { id: number } }) {
   const result = await getPostByID(params.id)
@@ -26,6 +27,10 @@ export default async function SinglePostPage ({
   const result = await getPostByID(params.id)
   const post = result[0]
 
+  if (!post) {
+    notFound()
+  }
+  
   const cmtResult = await getAllCommentsByPostID(post.id)
   const comments = cmtResult
 
