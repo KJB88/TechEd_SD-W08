@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Heading from './heading'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 /* HOME */
 export function generateMetadata () {
@@ -13,7 +14,7 @@ export default async function Home () {
   //await dbInit();
   return (
     <>
-    <Heading data={{name: "Home"}}/>
+      <Heading data={{ name: 'Home' }} />
       <p className='drop-shadow text-center'>
         Pryvit! Welcome to The Zone, stalker! <br />
         Here we have deadly anomalies, dangerous mutants, anarchists and

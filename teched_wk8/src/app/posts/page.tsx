@@ -16,7 +16,7 @@ export default async function Posts ({
   searchParams: { sort: string }
 }) {
   const allPosts = await getAllPostsWithUserJoin()
-console.log(allPosts);
+  console.log(allPosts)
   async function submitPost (formData: FormData) {
     'use server'
 
@@ -29,8 +29,10 @@ console.log(allPosts);
   }
 
   return (
-      <div>
+    <>
+      {' '}
       <Heading data={{ name: 'Posts' }} />
+      <div>
         <form
           className='flex flex-col border-b-white border-b-2 pb-2'
           action={submitPost}
@@ -43,16 +45,20 @@ console.log(allPosts);
         </form>
         <ul>
           {allPosts.map(post => (
-    <li className='drop-shadow border-b-white border-b-2' key={post.id}>
-      <Link href={`/posts/${post.id}`}>
-        <h2 className='text-center text-xl font-bold'>{post.header}</h2>
-        <p>{post.content}</p>
-        by <span className='font-bold'>{post.name}</span> at{' '}
-        <span className='font-bold'>{post.date_created.toString()}</span>
-      </Link>
-      <ContentModifier data={{id: post.id, isPost: true}}/>
-    </li>))}
-          </ul>
+            <li className='drop-shadow border-b-white border-b-2' key={post.id}>
+              <Link href={`/posts/${post.id}`}>
+                <h2 className='text-center text-xl font-bold'>{post.header}</h2>
+                <p>{post.content}</p>
+                by <span className='font-bold'>{post.name}</span> at{' '}
+                <span className='font-bold'>
+                  {post.date_created.toString()}
+                </span>
+              </Link>
+              <ContentModifier data={{ id: post.id, isPost: true }} />
+            </li>
+          ))}
+        </ul>
       </div>
+    </>
   )
 }

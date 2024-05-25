@@ -46,8 +46,8 @@ export default async function SinglePostPage ({
 
   return (
     <>
+            <Heading data={{ name: post.header }} />
       <div className='border-b-2 border-b-white'>
-        <Heading data={{ name: post.header }} />
         <p>{post.content}</p>
         by <span className='font-bold'>{post.name}</span> at{' '}
         <span className='font-bold'>{post.date_created.toString()}</span>

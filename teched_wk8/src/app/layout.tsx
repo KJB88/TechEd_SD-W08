@@ -31,12 +31,6 @@ export default function RootLayout ({
         <body className={inter.className}>
           <div className='bg-skadovsk bg-cover bg-center h-screen'>
             <div className='bg-white/5 h-screen backdrop-blur-sm'>
-              <SignedOut>
-                <SignInButton />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
               <Header />
               <main className='fixed bg-pda bg-top bg-contain bg-no-repeat pt-16 pda'>
                 <div className='fixed mx-20 object-contain w- h-min flex flex-col gap-2 align-items pda-margin bg-black overflow-y-scroll'>
