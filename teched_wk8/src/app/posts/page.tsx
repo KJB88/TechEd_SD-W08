@@ -4,6 +4,8 @@ import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import Heading from '../heading'
 import ContentModifier from '../contentMod'
+import UserMini from '@/app/userMini'
+import Post from '../post'
 
 export const metadata = {
   title: 'ZonePDA: All Posts',
@@ -30,7 +32,6 @@ export default async function Posts ({
 
   return (
     <>
-      {' '}
       <Heading data={{ name: 'Posts' }} />
       <div>
         <form
@@ -45,16 +46,22 @@ export default async function Posts ({
         </form>
         <ul>
           {allPosts.map(post => (
-            <li className='drop-shadow border-b-white border-b-2' key={post.id}>
-              <Link href={`/posts/${post.id}`}>
-                <h2 className='text-center text-xl font-bold'>{post.header}</h2>
-                <p>{post.content}</p>
-                by <span className='font-bold'>{post.name}</span> at{' '}
-                <span className='font-bold'>
-                  {post.date_created.toString()}
-                </span>
-              </Link>
-              <ContentModifier data={{ id: post.id, isPost: true }} />
+                  <li
+                  className='drop-shadow border-b-white border-b-2 flex flex-col-nowrap'
+                  key={post.id}
+                >
+            <Post
+              data={{
+                id: post.id,
+                name: post.name,
+                header: post.header,
+                timeDate: post.timeDate,
+                content: post.content,
+                pfp: post.pfp,
+                faction: post.faction,
+                location: post.location
+              }}
+            />
             </li>
           ))}
         </ul>

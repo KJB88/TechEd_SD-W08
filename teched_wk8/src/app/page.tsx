@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Heading from './heading'
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 /* HOME */
 export function generateMetadata () {
@@ -11,7 +10,6 @@ export function generateMetadata () {
 }
 
 export default async function Home () {
-  //await dbInit();
   return (
     <>
       <Heading data={{ name: 'Home' }} />
@@ -36,33 +34,3 @@ export default async function Home () {
     </>
   )
 }
-
-/*
-        <Link
-          className='col-start-2 col-end-3 row-start-1 row-end-2'
-          href='/users'
-        >
-          To Users
-        </Link>
-
-        <Link
-          className='col-start-1 col-end-2 row-start-2 row-end-3'
-          href='/tags'
-        >
-          To Tags
-        </Link>
-
-        <Link
-          className='col-start-2 col-end-3 row-start-2 row-end-3'
-          href='/locations'
-        >
-          To Locations
-        </Link>
-
-        <Link
-          className='col-start-1 col-end-3 row-start-3 row-end-4'
-          href='/factions'
-        >
-          To Factions
-        </Link>
-*/

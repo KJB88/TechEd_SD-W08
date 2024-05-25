@@ -15,9 +15,3 @@ export default function Header () {
     </div>
   )
 }
-
-
-/*
-        <Link className="drop-shadow"  href='/'>Home</Link>
-        <Link className="drop-shadow"  href='/posts'>Posts</Link>
-*/

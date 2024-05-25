@@ -8,6 +8,7 @@ import { revalidatePath } from 'next/cache'
 import Heading from '@/app/heading'
 import ContentModifier from '@/app/contentMod'
 import { notFound } from 'next/navigation'
+import UserMini from '@/app/userMini'
 
 export async function generateMetadata ({ params }: { params: { id: number } }) {
   const result = await getPostByID(params.id)

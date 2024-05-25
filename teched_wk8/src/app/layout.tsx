@@ -11,6 +11,7 @@ import {
 import Header from '@/app/header'
 import Footer from '@/app/footer'
 import './globals.css'
+import { dark, neobrutalism } from '@clerk/themes'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,7 +34,7 @@ export default function RootLayout ({
             <div className='bg-white/5 h-screen backdrop-blur-sm'>
               <Header />
               <main className='fixed bg-pda bg-top bg-contain bg-no-repeat pt-16 pda'>
-                <div className='fixed mx-20 object-contain w- h-min flex flex-col gap-2 align-items pda-margin bg-black overflow-y-scroll'>
+                <div className='fixed mx-20 object-contain h-min flex flex-col gap-2 align-items pda-margin bg-black overflow-y-scroll overflow-x-hidden'>
                   {children}
                 </div>
               </main>

@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { SignedIn, UserButton, SignedOut, SignInButton } from '@clerk/nextjs'
 
@@ -21,11 +20,15 @@ export default function Heading ({ data }: { data: { name: string } }) {
             </Tooltip.Content>
           </Tooltip.Portal>
         </Tooltip.Root>
-        <Tooltip.Root>
+      </div>
+      <ul className='flex flex-col-nowrap text-xl justify-center border-b-white border-b-2 gap-2 -mt-8'>
+      <Tooltip.Root>
           <Tooltip.Trigger>
+            <li className="'drop-shadow bg-black bg-opacity-40 rounded-2xl text-center align-middle">
             <SignedOut>
               <SignInButton />
             </SignedOut>
+            </li>
           </Tooltip.Trigger>
           <Tooltip.Portal>
             <Tooltip.Content className='drop-shadow bg-black bg-opacity-40 rounded-2xl py-1 px-2 text-center align-middle'>
@@ -33,8 +36,6 @@ export default function Heading ({ data }: { data: { name: string } }) {
             </Tooltip.Content>
           </Tooltip.Portal>
         </Tooltip.Root>
-      </div>
-      <ul className='flex flex-col-nowrap text-xl justify-center border-b-white border-b-2 gap-2 -mt-10'>
         <Tooltip.Root>
           <Tooltip.Trigger>
             <li>
