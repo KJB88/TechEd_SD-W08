@@ -16,11 +16,12 @@ export const metadata: Metadata = {
     'A student blog/forum project themed within GSC Game Worlds S.T.A.L.K.E.R universe.'
 }
 
-export default async function RootLayout ({
+export default function RootLayout ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  /*
   const { userId } = auth()
 console.log(userId);
 
@@ -29,7 +30,7 @@ if (userId)
     const thisUser = await currentUser();
     console.log("User is logged in");
   }
-  
+  */
   return (
     <ClerkProvider>
       <html lang='en'>
