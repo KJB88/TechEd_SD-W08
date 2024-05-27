@@ -50,15 +50,3 @@ That means we can build complete user generated websites with users and associat
 <li>A user's biography cannot be blank. If a user logs in but doesn't have a biography set, they should be asked to fill one in.</li>
   </ul>
 </section>
-<section>
-  <h2>📁 Project Structure</h2>
-</section>
-<section>
-  <h2>✔️ Implementation (of Requirements)</h2>
-</section>
-<section>
-  <h2>➕ Implementation (of Stretch Goals)</h2>
-</section>
-<section>
-  <h2>🏆 Honorary Mentions</h2>
-</section>
