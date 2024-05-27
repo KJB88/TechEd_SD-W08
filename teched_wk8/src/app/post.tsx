@@ -16,6 +16,7 @@ export default function Post ({
     location: string
   }
 }) {
+
   return (
     <>
         <Link href={`/posts/${data.id}`}>
@@ -28,7 +29,6 @@ export default function Post ({
               name: data.name,
               pfp: 'sdsad',
               faction: 'loner',
-              location: '100rads'
             }}
           />
         </Link>

@@ -8,7 +8,7 @@ import { revalidatePath } from 'next/cache'
 import Heading from '@/app/heading'
 import ContentModifier from '@/app/contentMod'
 import { notFound } from 'next/navigation'
-import UserMini from '@/app/userMini'
+import Post from '@/app/post'
 
 export async function generateMetadata ({ params }: { params: { id: number } }) {
   const result = await getPostByID(params.id)
@@ -31,7 +31,7 @@ export default async function SinglePostPage ({
   if (!post) {
     notFound()
   }
-  
+
   const cmtResult = await getAllCommentsByPostID(post.id)
   const comments = cmtResult
 
@@ -47,12 +47,20 @@ export default async function SinglePostPage ({
 
   return (
     <>
-            <Heading data={{ name: post.header }} />
+      <Heading data={{ name: post.header }} />
       <div className='border-b-2 border-b-white'>
-        <p>{post.content}</p>
-        by <span className='font-bold'>{post.name}</span> at{' '}
-        <span className='font-bold'>{post.date_created.toString()}</span>
-        <ContentModifier data={{ id: post.id, isPost: true }} />
+        <Post
+          data={{
+            id: post.id,
+            name: post.name,
+            header: post.header,
+            timeDate: post.timeDate,
+            content: post.content,
+            pfp: post.pfp,
+            faction: post.faction,
+            location: post.location
+          }}
+        />
       </div>
       <div>
         <form

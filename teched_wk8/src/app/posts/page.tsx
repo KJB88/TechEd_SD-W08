@@ -6,6 +6,7 @@ import Heading from '../heading'
 import ContentModifier from '../contentMod'
 import UserMini from '@/app/userMini'
 import Post from '../post'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
 
 export const metadata = {
   title: 'ZonePDA: All Posts',
@@ -34,6 +35,7 @@ export default async function Posts ({
     <>
       <Heading data={{ name: 'Posts' }} />
       <div>
+        <SignedIn>
         <form
           className='flex flex-col border-b-white border-b-2 pb-2'
           action={submitPost}
@@ -44,6 +46,12 @@ export default async function Posts ({
           <input className='text-black' type='text' name='content' />
           <button className='bg-gray-300 text-black mt-2'>Submit Post</button>
         </form>
+        </SignedIn>
+        <SignedOut>
+          <div className="text-center border-b-white border-b-2 pb-2">
+          You may view but not create posts or comments. Please sign in or sign up if you would like to participate.
+          </div>
+        </SignedOut>
         <ul>
           {allPosts.map(post => (
                   <li
@@ -55,7 +63,7 @@ export default async function Posts ({
                 id: post.id,
                 name: post.name,
                 header: post.header,
-                timeDate: post.timeDate,
+                timeDate: post.date_created.toLocaleString(),
                 content: post.content,
                 pfp: post.pfp,
                 faction: post.faction,

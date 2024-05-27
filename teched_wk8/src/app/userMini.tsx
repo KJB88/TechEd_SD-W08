@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function UserMini ({
   data
 }: {
-  data: { name: string; pfp: string; faction: string; location: string }
+  data: { name: string; pfp: string; faction: string; }
 }) {
   return (
     <>

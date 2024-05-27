@@ -1,17 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+import { ClerkProvider, SignedIn, SignedOut } from '@clerk/nextjs'
 
+import Link from 'next/link'
 import Header from '@/app/header'
 import Footer from '@/app/footer'
 import './globals.css'
-import { dark, neobrutalism } from '@clerk/themes'
+import { auth, currentUser } from '@clerk/nextjs/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +16,20 @@ export const metadata: Metadata = {
     'A student blog/forum project themed within GSC Game Worlds S.T.A.L.K.E.R universe.'
 }
 
-export default function RootLayout ({
+export default async function RootLayout ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { userId } = auth()
+console.log(userId);
+
+if (userId)
+  {
+    const thisUser = await currentUser();
+    console.log("User is logged in");
+  }
+  
   return (
     <ClerkProvider>
       <html lang='en'>

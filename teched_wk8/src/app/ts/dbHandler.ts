@@ -6,7 +6,7 @@ import pg from "pg";
 import seedFullDB from "./seed";
 import { selectAllPostsWithUserJoin, selectAllPosts, selectAllUsers, selectAllTags, selectAllFactions,
      selectAllLocations, selectAllCommentsByPostID, selectPostByPostID, updateCommentLikesByCommentID,
-      updatePostLikesByPostID, deleteCommentByCommentID, deletePostByPostID, selectPostsByTagIDWithTagJoin} from "./queries";
+      updatePostLikesByPostID, deleteCommentByCommentID, deletePostByPostID, selectPostsByTagIDWithTagJoin, selectUserByUserID} from "./queries";
 import {insertPost, insertComment} from "./queries";
 // Use envVars
 dotenv.config();
@@ -32,6 +32,10 @@ export async function dbInit(){
 export async function getAllUsers()
 {
     return (await db.query(selectAllUsers)).rows;
+}
+export async function getUserByID(id: number)
+{
+    return (await db.query(selectUserByUserID, [id])).rows;
 }
 
 export async function getAllPosts()
